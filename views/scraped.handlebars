@@ -1,0 +1,24 @@
+{{#each articles}}
+    <li>
+        <div class="collapsible-header">{{title}}</div>
+        <div class="collapsible-body">
+            <div class='row'>
+                <div class='col s12'>
+                    <h4>Link: <a target="_blank" href='{{link}}'>{{link}}</a></h4>
+                    <h4>Author: {{author}}</h4>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col s4'>
+                    <a class='btn btn-medium'>Add Note</a>
+                </div>
+                <div class='col s4'>
+                    <a class='btn btn-medium'>View Notes</a>
+                </div>  
+                <div class='col s4'>
+                    <a class='btn btn-medium'>Delete Article</a>                              
+                </div>
+            </div>
+        </div>
+    </li>
+{{/each}}  
