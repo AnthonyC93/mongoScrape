@@ -1,6 +1,9 @@
-$(document).ready(function(){
-    console.log('this page loaded')
-    $('.collapsible').collapsible();
+$('.collapsible').collapsible();
 
+$('#scrapeNow').on('click',()=>{
+    console.log('time to scrape')
     
-});
+   
+    
+})
+    
