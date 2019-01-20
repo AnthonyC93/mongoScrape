@@ -46,18 +46,33 @@ app.get('/scrape',(req,res)=>{
         //     results.push(title);
         // })
         $('li.article').each((i,element)=>{
-            
+
             var title = $(element).children().find('a').text();
             var link = $(element).children().attr("href");
             var excerpt = $(element).children().find('p.excerpt').text();
             var author = $(element).children().find("span").text();
      
-            results.push({
-                link:link,
-                title:title,
-                excerpt:excerpt,
-                author:author
-            })
+
+            // If this found element had both a title and a link
+            if (title && link && excerpt && author) {
+                // Insert the data in the scrapedData db
+                db.articles.insert({
+                    title: title,
+                    link: link,
+                    excerpt:excerpt,
+                    author:author
+                },
+                function(err, inserted) {
+                if (err) {
+                    // Log the error if one is encountered during the query
+                    console.log(err);
+                }
+                else {
+                    // Otherwise, log the inserted data
+                    console.log(inserted);
+                }
+                });
+            }
         })
         console.log(results);
     })
