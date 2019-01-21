@@ -1,22 +1,51 @@
 {{#each articles}}
-    <li>
-        <div class="collapsible-header">{{title}}</div>
+    <li id='{{this._id}}'>
+        <div class="collapsible-header flow-text">{{this.title}}</div>
         <div class="collapsible-body">
             <div class='row'>
                 <div class='col s12'>
-                    <h4>Link: <a target="_blank" href='{{link}}'>{{link}}</a></h4>
-                    <h4>Author: {{author}}</h4>
+                    <h4>{{this.excerpt}}</h4>
+                    <p class='flow-text'>{{this.author}}</p>
+                    <a target="_blank" href='{{this.link}}'>{{this.link}}</a>
                 </div>
             </div>
             <div class='row'>
                 <div class='col s4'>
-                    <a class='btn btn-medium'>Add Note</a>
+                    <a class='addNote btn btn-medium'>Add Note</a>
                 </div>
                 <div class='col s4'>
-                    <a class='btn btn-medium'>View Notes</a>
+                    <a class='viewNotes btn btn-medium'>View Notes</a>
                 </div>  
                 <div class='col s4'>
-                    <a class='btn btn-medium'>Delete Article</a>                              
+                    <a data-id='{{this._id}}' class='deleteArticle btn btn-medium'>Delete Article</a>                              
+                </div>
+            </div>
+            <div class='row forAddingNote'>
+                <div class='col s12'>
+                    <div class="input-field">
+                        <input placeholder="Add Note" type="text" class='validate'>
+                    </div>
+                    <a data-id='{{this._id}}' class='addNewNote btn btn-medium'>Add</a>
+                </div>
+            </div>
+            <div class='row forNotes'>
+                <div class='col s12'>
+                    {{#if this.notes}}
+                        <ul class='collapsible'>
+                        {{#each this.notes}}
+                            <li>
+                                <div class='collapsible-header'>{{this.description}}</div>
+                                <div class='collapsible-body'>
+                                    <div class='row'>
+                                        <div class='col s12'>
+                                            <a data-id='{{@index}}' class='deleteThisNote red btn btn-medium'>delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {{/each}}         
+                        </ul>
+                    {{/if}}
                 </div>
             </div>
         </div>
