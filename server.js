@@ -17,7 +17,11 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/scrapedInfo", { useNewUrlParser: true });
+if(process.env.MONGODB_URI){
+    mongoose.connect(process.env.MONGODB_URI);
+}else{
+    mongoose.connect("mongodb://localhost/scrapedInfo", { useNewUrlParser: true });
+}
 
 // Require all models
 var db = require("./models/articleModel");
