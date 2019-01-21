@@ -10,7 +10,7 @@ var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-var PORT = 4000;
+var PORT = process.env.PORT || 4000; 
 
 //handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
